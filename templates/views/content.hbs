@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>headerLinks}}
+    <link rel="stylesheet" href="./css/style2.css">
+    <title>Document</title>
+</head>
+<body class="content-body">
+    <div class="main-header-div"></div>
+    {{>header}}    
+    </div>
+
+    {{!-- Search --}}
+        <div class="wrapper"> 
+            <div id="search-container">
+                <input type="search" id="search-input" placeholder="Search..."/>
+                <button id="search">Search</button>
+            </div>
+            <div id="buttons">
+                <button class="button-value" onclick="filterNote('All')">All</button>
+                <button class="button-value" onclick="filterNote('linguistics')">Linguistics</button>
+                <button class="button-value" onclick="filterNote('upsc')">UPSC</button>
+                <button class="button-value" onclick="filterNote('literature')">Literature</button>
+                <button class="button-value" onclick="filterNote('history')">History</button>
+            </div>
+        </div>
+    {{!-- Search --}}
+    
+    {{>cardValue}}
+
+    <footer>
+    <p>All Copyrights Reserved. Made with love by &copy;Pankaj Gupta</p>
+    </footer>
+
+    <script>
+        function filterNote(value){
+            console.log(value)
+            let divs = document.querySelectorAll(".card-container");
+            
+
+            
+            divs.forEach(d => {
+                //check if value equals  inner text
+                if(value !== "All"){
+                    if(d.id === value){
+                        d.style.display = "block"
+                    }else{
+                        d.style.display = "none"
+                    }
+                }
+                else d.style.display = "block"
+            })
+        }
+
+
+        //search button click
+        document.getElementById("search").addEventListener("click", () => {
+            console.log("searched")
+            let searchInput = document.getElementById("search-input").value;
+            filterNote(searchInput);
+        })
+
+        window.onload = () => {
+            filterNote("All")
+        };
+    </script>
+</body>
+</html>
